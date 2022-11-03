@@ -15,8 +15,13 @@ def compile(shader):
     inputFile = input[0] + '\\' + input[1] + '.' + input[2]
     outputFile = output[0] + '\\' + output[1] + '.' + output[2]
 
+    # check for /bin dir
+    if (os.path.isdir("bin") == False):
+        ap.print.info("make /bin")
+        os.mkdir("bin")
+
     # output
-    ap.print.info(input[1])
+    print(input[1])
 
     cmd = 'cmd /c "oslc %s -o %s"' % (inputFile, outputFile)
     process = os.popen(cmd)
