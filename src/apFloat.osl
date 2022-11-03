@@ -1,0 +1,16 @@
+#include "../lib/ShaderAPI.h"
+
+shader apFloat
+[[
+    string help = "Simple float pass-through operation"
+]]
+(
+    float input = 0.0
+    [[ string label = "Input" ]],
+
+    output float resultFloat = input
+)
+
+{
+    resultFloat = input;
+}

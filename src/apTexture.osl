@@ -1,0 +1,46 @@
+#include "../lib/ShaderAPI.h"
+
+#include "../lib/Color.h"
+#include "../lib/Math.h"
+#include "../lib/Texture.h"
+
+shader apTexture
+[[
+    string help = "Use texture at given filename",
+]]
+(
+    TEXTURE_MANIFOLD_INPUT(),
+    TEXTURE_INPUT_PARAMS(),
+
+    float s = 0
+    [[ int lockgeom = 0 ]],
+    float t = 0
+    [[ int lockgeom = 0 ]],
+
+    COLOR_OUTPUT_PARAMS()
+)
+{
+    float inputS = s;
+    float inputT = t;
+
+    if (isconnected(inputManifold))
+    {
+        inputS = inputManifold.Q[0];
+        inputT = inputManifold.Q[1];
+    }
+
+    if (invertT)
+        inputT = 1 - inputT;
+
+    inputS *= (scaleS * scaleGlobal);
+    inputT *= (scaleT * scaleGlobal);
+
+    resultRGBA.RGB = texture(filename, inputS, inputT,
+        "missingcolor", missingColor, "missingalpha", missingAlpha, "alpha", resultRGBA.A);
+
+    if (remap)
+        resultRGBA.RGB = Math_RemapColor(resultRGBA.RGB,
+                                         inputMin, inputMax, outputMin, outputMax);
+
+    COLOR_SET_OUTPUTS();
+} 

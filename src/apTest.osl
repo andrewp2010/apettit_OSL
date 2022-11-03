@@ -1,0 +1,16 @@
+#include "../lib/ShaderAPI.h"
+
+#include "../lib/Color.h"
+
+shader apTest
+[[
+    string help = "Node for testing",
+]]
+(
+    COLOR_ALPHA_PARAM_INPUTS,
+    COLOR_PARAM_TAG_INPUTS(A),
+    COLOR_ALPHA_PARAM_TAG_INPUTS(B)  
+)
+{
+
+} 

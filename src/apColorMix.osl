@@ -1,0 +1,46 @@
+#include "../lib/ShaderAPI.h"
+
+#include "../lib/Color.h"
+
+shader apColorMix
+[[
+    string help = "Mix between Input A and Input B given a float Mix Value"
+]]
+(
+    color inputRGB_A = 0.0
+    [[ string label = "Input RGB A" ]],
+    float inputAlpha_A = 1.0
+    [[ string label = "Input Alpha A" ]],
+    color inputRGB_B = 1.0
+    [[ string label = "Input RGB B" ]],
+    float inputAlpha_B = 1.0
+    [[ string label = "Input Alpha B" ]],
+    string alphaMixType = "A"
+    [[ 
+        int connectable = 0, string label = "Alpha Mix", string widget = "popup",
+        string options = "A|Mix|B"
+    ]],
+    float mixValue = 0.5
+    [[ string label = "Mix Value" ]],
+
+    COLOR_OUTPUT_PARAMS()
+)
+
+{
+    resultRGBA.RGB = mix(inputRGB_A, inputRGB_B, mixValue);
+    
+    if (alphaMixType == "A")
+    {
+        resultRGBA.A = inputAlpha_A;
+    }
+    else if (alphaMixType == "Mix")
+    {
+        resultRGBA.A = mix(inputAlpha_A, inputAlpha_B, mixValue);
+    }
+    else if (alphaMixType == "B")
+    {
+        resultRGBA.A = inputAlpha_B;
+    }
+
+    COLOR_SET_OUTPUTS();
+}

@@ -1,0 +1,21 @@
+#include "../lib/ShaderAPI.h"
+
+shader apFloatDivide
+[[
+    string help = "Divide Input A and Input B. If Input B is 0.0 then returns 0.0"
+]]
+(
+    float inputA = 0.0
+    [[ string label = "Input A" ]],
+    float inputB = 0.0
+    [[ string label = "Input B" ]],
+
+    output float resultF = 0.0
+)
+
+{
+    if (inputB == 0.0)
+        resultF = 0.0;
+    else
+        resultF = inputA / inputB; 
+}

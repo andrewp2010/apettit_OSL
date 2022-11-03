@@ -1,0 +1,24 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Math.h"
+
+shader apFloatRemap
+[[
+    string help = "Remap float operation",
+]]
+(
+    float inputF = 0.5
+    [[ string label = "Input"]],
+    float inputMin = 0.0
+    [[ string label = "Input Min" ]],
+    float inputMax = 1.0
+    [[ string label = "Input Max" ]],
+    float outputMin = 0.0
+    [[ string label = "Output Min" ]],
+    float outputMax = 1.0
+    [[ string label = "Output Max" ]],
+
+    output float resultF = 0.5
+)
+{
+    resultF = Math_Remap(inputF, inputMin, inputMax, outputMin, outputMax);
+} 

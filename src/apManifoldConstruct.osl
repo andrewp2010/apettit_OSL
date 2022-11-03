@@ -1,0 +1,29 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Manifold.h"
+
+shader apManifoldConstruct
+[[
+    string help = "Build an osl struct manifold from point and filter"
+                  "so a c++ Manifold can be brought into osl"
+]]
+(
+    float inputX = 0.0
+    [[ string label = "Input X" ]],
+    float inputY = 0.0
+    [[ string label = "Input Y" ]],
+    float inputZ = 0.0
+    [[ string label = "Input Z" ]],
+    normal inputN = normal(0, 0, 0)
+    [[ string label = "Input N" ]],
+
+    MANIFOLD_XFORM_PARAMS(),
+    MANIFOLD_OUTPUT()
+)
+
+{
+    point refPoint = point(inputX, inputY, inputZ);
+    Manifold_Construct(refPoint, inputN, resultManifold);
+
+    MANIFOLD_TRANSFORM();
+    MANIFOLD_SET_OUTPUTS();
+}

@@ -1,0 +1,18 @@
+#include "../lib/ShaderAPI.h"
+
+shader apFloatPower
+[[
+    string help = "Input A to the power of Input B"
+]]
+(
+    float inputA = 0.0
+    [[ string label = "Input A" ]],
+    float inputB = 1.0
+    [[ string label = "Input B" ]],
+
+    output float resultF = 0.0
+)
+
+{
+    resultF = pow(inputA, inputB);
+}
