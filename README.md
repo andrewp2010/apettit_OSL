@@ -78,7 +78,7 @@ Batch files that can be called anywhere in command prompt
 Python scripts to be called in apettit_OSL dir:
 - ```oslBuild.py``` compile osl source code and place in ```bin```
 - ```osl2hda.py``` converts oso code to houdini hda
-- Note: can be run with ```-h``` for more help information and python scripts must be run with hython interpreter
+- Note: can be run with ```-h``` for more help information and python scripts must be run with hython interpreter, e.g.
 ```hython scripts\oslBuild.py -h```
 
 ### Environment
