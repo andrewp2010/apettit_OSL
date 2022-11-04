@@ -42,7 +42,7 @@ g = parser.add_mutually_exclusive_group()
 
 g.add_argument("-s", "--shader", help = "Shader file to compile")
 g.add_argument("-l", "--lib", action='store_true', help = "Compile apettit shader library")
-
+parser.add_argument("-c", "--convert", action = "store_true", help = "run osl2hda.py script following build")
 args = parser.parse_args()
 
 filePath = os.path.dirname(os.path.realpath(__file__))
@@ -55,3 +55,6 @@ if (args.lib):
 else:
     _, shader = os.path.split(args.shader)
     compile(shader)
+
+if (args.convert):
+    exec(open("scripts\osl2hda.py").read())
