@@ -1,21 +1,23 @@
 # apettit OSL Library
-apettit_OSL is a library of utility OSL shaders. The OSL source code can be compiled via oslc and should be viable in any renderer that supports osl (though it may require upadtes for parameter metadata). In addition this library provides the necessary scripts to convert compiled osl data into Side FX Houdini's native hda. The conversion scripts rely on Pixar Renderman's python library as a framework.
+apettit_OSL is a library of utility OSL shaders. The OSL source code can be compiled via oslc and should be viable in any renderer that supports osl (though it may require updates for parameter metadata dependent on the renderer). In addition this library provides the necessary scripts to convert compiled osl data into Side FX Houdini's native hda. The conversion scripts rely on Pixar Renderman's python library as a framework.
 
 ## Supported Platforms
-apettit_OSL is currently support on Windows platforms, and has been built and tested on Windows 10.
+apettit_OSL is currently supported on Windows platforms, and has been built and tested on Windows 10.
 
-The OSL source code is not dependen on platform, but rather the renderer. It has been build and tested on Renderman 24.4. Given the nature of OSL it should be supported in other renderers but support should be considered experimental at this time.
+The OSL code is not dependent on platform, but rather the renderer. It has been build and tested on Renderman 24.4. Given the nature of OSL it should be supported in other renderers but support should be considered experimental at this time.
 
-I am actively working on porting apettit_OSL scrits to Linux. apettit_OSL script support should be considered experimental for Linux at this time.
+I am actively working on porting apettit_OSL scripts to Linux. apettit_OSL script support should be considered experimental for Linux at this time.
 
 
 ## Dependencies
-apettit_OSL was designed to be supported in SideFX Houdini through Pixar Renderman's framework. The required OSL dependencies are downloaded with a fresh install of Houdini. The following dependencies are recommended for the full support of apettit_OSL and its scripts:
+apettit_OSL was designed to be supported in SideFX Houdini through Pixar Renderman's python library.The following dependencies are required for the full support of apettit_OSL and its scripts:
  - [SideFX Houdini](https://www.sidefx.com/)
  - [Pixar's Renderman](https://renderman.pixar.com/)
 
+ Any other required OSL dependencies are downloaded with Houdini and Renderman. 
+
  ### Optional
- If you just want to compile the osl source code the following dependencies are required:
+ If you just want to compile the osl code, and do not wish to use apettit_OSL custom scripts, then only following dependencies are required:
  - [OSL](https://github.com/AcademySoftwareFoundation/OpenShadingLanguage.git)
 
  ### Tested Versions
@@ -29,10 +31,10 @@ apettit_OSL was designed to be supported in SideFX Houdini through Pixar Renderm
 
 ## Getting and Building the Code
 
-### 1. Install Prerequisites (see [Dependencies](#dependencies) for required versions)
+### 1. Install Prerequisites (see [Dependencies](#dependencies))
 
 ### 2. Download the apettit_OSL source code
-You can download source code archives from [GitHub](https://github.com/andrewp2010/apettit_OSLlib) or use ```git``` to clone the repository.
+You can download source code from [GitHub](https://github.com/andrewp2010/apettit_OSLlib) or use ```git``` to clone the repository.
 
 ```
 > git clone https://github.com/andrewp2010/apettit_OSLlib
@@ -46,7 +48,7 @@ You can download source code archives from [GitHub](https://github.com/andrewp20
 | PATH       | <apettit_OSL dir>\scripts                                                   |
 | HYTHONPATH | "C:\Program Files\Side Effects Software\Houdini 19.0.589\bin\hython3.7.exe" |
 
-Note: if there are any spaces in your env var paths remember to place the path within "". This will commonly be the case for the HYTHONPATH
+Note: if there are any spaces in your environment variable paths remember to place the path within "". This will commonly be the case for the HYTHONPATH on windows
 
 #### Houdini.env:
 | Variable             | Path                     |
@@ -77,19 +79,19 @@ Batch files that can be called anywhere in command prompt
 #### Python
 Python scripts to be called in apettit_OSL dir:
 - ```oslBuild.py``` compile osl source code and place in ```bin```
-- ```osl2hda.py``` converts oso code to houdini hda
+- ```osl2hda.py``` converts compiled osl code to houdini hda
 - Note: can be run with ```-h``` for more help information and python scripts must be run with hython interpreter, e.g.
 ```hython scripts\oslBuild.py -h```
 
 ### Environment
 - ```PATH``` required to call custom batch files in windows command prompt
 - ```HYTHONPATH``` custom variable for hython  batch command
-- ```HOUDINI_OTLSCAN_PATH``` dir houdini looks at for osl lib (hda) at startup
-- ```RMAN_SHADERPATH``` required for rfh.config.py to connect oso data to generated osl lib (hda)
+- ```HOUDINI_OTLSCAN_PATH``` dir houdini looks at for osl hda at startup
+- ```RMAN_SHADERPATH``` required for rfh.config.py to connect compiled osl data to generated osl hda
 
 ### Visual Studio
-For an optimal environemtn set the python interpreter to the HYTHONPATH
-Can set this by default in settings.json:
+For an optimal environment set the python interpreter to the HYTHONPATH
+Can set this to be startup default in settings.json:
 ```
 "python.defaultInterpreterPath": "C:/Program Files/Side Effects Software/Houdini 19.0.589/bin/hython3.7.exe"
 ```
@@ -97,11 +99,7 @@ Can set this by default in settings.json:
 ## License
 Apache License 2.0
 
-
-
-
-
-
-	---------- OSL mtoa Environment Variables ----------
-CUSTOM_GENERAL_OSL = C:\dev\Plugins\General\OSL
-ARNOLD_PLUGIN_PATH = %CUSTOM_GENERAL_OSL%
+## misc
+Future environment variables for Arnold support
+- CUSTOM_GENERAL_OSL = C:\dev\Plugins\General\OSL
+- ARNOLD_PLUGIN_PATH = %CUSTOM_GENERAL_OSL%
