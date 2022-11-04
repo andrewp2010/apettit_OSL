@@ -38,7 +38,7 @@ You can download source code archives from [GitHub](https://github.com/andrewp20
 > git clone https://github.com/andrewp2010/apettit_OSLlib
 ```
 
-### 3. Set Required Environment Variables (see [Environment Variables](#Environment) for required versions)
+### 3. Set Required Environment Variables (see [Environment](#Environment) for additional info)
 
 #### System Environment Variables:
 | Variable   | Path                                                                        |
