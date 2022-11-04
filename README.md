@@ -2,7 +2,6 @@
 apettit_OSL is a library of utility OSL shaders. The OSL source code can be compiled via oslc and should be viable in any renderer that supports osl (though it may require upadtes for parameter metadata). In addition this library provides the necessary scripts to convert compiled osl data into Side FX Houdini's native hda. The conversion scripts rely on Pixar Renderman's python library as a framework.
 
 ## Supported Platforms
-----------------------
 apettit_OSL is currently support on Windows platforms, and has been built and tested on Windows 10.
 
 The OSL source code is not dependen on platform, but rather the renderer. It has been build and tested on Renderman 24.4. Given the nature of OSL it should be supported in other renderers but support should be considered experimental at this time.
@@ -11,7 +10,6 @@ I am actively working on porting apettit_OSL scrits to Linux. apettit_OSL script
 
 
 ## Dependencies
----------------
 apettit_OSL was designed to be supported in SideFX Houdini through Pixar Renderman's framework. The required OSL dependencies are downloaded with a fresh install of Houdini. The following dependencies are recommended for the full support of apettit_OSL and its scripts:
  - [SideFX Houdini](https://www.sidefx.com/)
  - [Pixar's Renderman](https://renderman.pixar.com/)
@@ -30,9 +28,9 @@ apettit_OSL was designed to be supported in SideFX Houdini through Pixar Renderm
 
 
 ## Getting and Building the Code
---------------------------------
 
 ### 1. Install Prerequisites (see [Dependencies](#dependencies) for required versions)
+
 ### 2. Download the apettit_OSL source code
 You can download source code archives from [GitHub](https://github.com/andrewp2010/apettit_OSLlib) or use ```git``` to clone the repository.
 
@@ -67,13 +65,15 @@ Note: if there are any spaces in your env var paths remember to place the path w
 ```
 
 ## Additional Information
--------------------------
+
 ### Scripts
+
 #### Batch
 Batch files that can be called anywhere in command prompt
 - ```oslHome``` cd to apettit_OSL dir
 - ```oslTest``` opens a sandbox houdini file to test compiled shaders
 - ```hython``` command to use in place of ```python```, to use houdini python interpreter
+
 #### Python
 Python scripts to be called in apettit_OSL dir:
 - ```oslBuild.py``` compile osl source code and place in ```bin```
@@ -95,7 +95,6 @@ Can set this by default in settings.json:
 ```
 
 ## License
-----------
 Apache License 2.0
 
 
