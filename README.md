@@ -1,6 +1,10 @@
 # apettit OSL Library
 apettit_OSL is a library of utility OSL shaders. The OSL source code can be compiled via oslc and should be viable in any renderer that supports osl (though it may require updates for parameter metadata dependent on the renderer). In addition this library provides the necessary scripts to convert compiled osl data into Side FX Houdini's native hda. The conversion scripts rely on Pixar Renderman's python library as a framework.
 
+Conversion scripts are designed to allow users to add their own custom OSL files as well.
+
+See [OSL Documentation](osl-languagespec.pdf) for more information
+
 ## Supported Platforms
 apettit_OSL is currently supported on Windows platforms, and has been built and tested on Windows 10.
 
