@@ -58,7 +58,7 @@ Note: if there are any spaces in your env var paths remember to place the path w
 
 ### 4. Compile OSL Source Code
 ```
-> hython srcipts\oslBuild.py -l -h
+> hython srcipts\oslBuild.py -l -c
 ```
 
 ### 5. Try it out
