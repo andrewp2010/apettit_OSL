@@ -5,15 +5,7 @@ General Plugins
 CUSTOM_GENERAL_OSL = C:\dev\Plugins\General\OSL
 ARNOLD_PLUGIN_PATH = %CUSTOM_GENERAL_OSL%
 
-
-Auto load OSL pipeline scripts here:
-    C:\Users\andre\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-
-
-
-
-change houdini ui color on OSL-ENV type
-streamline UI
+---------- OSL rfh Environment Variables ----------
 
 Environment Variables
 	- PATH = C:\dev\Plugins\General\OSL\scripts
@@ -23,7 +15,9 @@ Environment Variables
 
 houdini.env
 	- HOUDINI_OTLSCAN_PATH = C:/dev/Plugins/General/OSL/otls;&
-		- dir houdini looks for hda
+		- dir houdini looks for osl lib (hda) at startup
+	- RMAN_SHADERPATH = C:/dev/Plugins/General/OSL/bin;&
+		- required for rfh.config.py to connect oso data to generated osl lib
 
 visual studio
 	- set python interpreter to Hython file
