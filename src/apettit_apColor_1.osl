@@ -1,5 +1,4 @@
 #include "lib/ShaderAPI.h"
-
 #include "lib/Color.h"
 
 shader apettit_apColor_1
