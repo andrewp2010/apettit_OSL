@@ -3,7 +3,7 @@ apettit_OSL is a library of utility OSL shaders. The OSL source code can be comp
 
 Conversion scripts are designed to allow users to add their own custom OSL files as well.
 
-See [OSL Documentation](osl-languagespec.pdf) for more information
+See [OSL Documentation](osl-languagespec.pdf) for more information on OSL syntax
 
 ## Supported Platforms
 apettit_OSL is currently supported on Windows platforms, and has been built and tested on Windows 10.
