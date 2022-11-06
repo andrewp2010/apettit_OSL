@@ -3,12 +3,12 @@
 
 shader apColorConstruct_1
 [[
-    string help = "Simple color pass-through operation",
+    string help = "Create color from split inputs",
 ]]
 (
-    COLOR_SPLIT_PARAM_INPUTS(),
+    COLOR_SPLIT_PARAM_INPUTS,
 
-    COLOR_PARAM_OUTPUTS()
+    COLOR_PARAM_OUTPUTS
 )
 {
     if (!useSplitInputs)
@@ -23,5 +23,5 @@ shader apColorConstruct_1
     }
     resultRGBA.A = inputA;
 
-    COLOR_PARAM_OUTPUTS_SET();
+    COLOR_PARAM_OUTPUTS_SET;
 } 
