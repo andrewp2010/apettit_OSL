@@ -10,37 +10,38 @@ struct colorAlpha
 };
  
 #define COLOR_DB color(1.0, 0.0, 1.0)
+#define ALPHA_DB 1.0
 #define COLORALPHA_DB { COLOR_DB, 1.0 }
 #define COLORALPHA_ZERO {color(0.0), 0.0}
 
 #define COLOR_PARAM_INPUTS                               \
     COLOR("", inputRGB, COLOR_DB, string label = "RGB"), \
-    FLOAT("", inputA, 1.0, string label = "Alpha")
+    FLOAT("", inputA, ALPHA_DB, string label = "Alpha")
 
-#define COLOR_PARAM_TAG_INPUTS(tag)                                             \
+#define COLOR_PARAM_TAG_INPUTS(tag)                                           \
     COLOR("color "#tag, inputRGB_##tag, COLOR_DB, string label = "RGB "#tag), \
-    FLOAT("color "#tag, inputA_##tag, 1.0, string label = "Alpha "#tag)
+    FLOAT("color "#tag, inputA_##tag, ALPHA_DB, string label = "Alpha "#tag)
 
 #define COLOR_ALPHA_PARAM_INPUTS                                            \
     PARAM("", colorAlpha, inputRGBA, COLORALPHA_DB, string label = "RGBA"), \
     COLOR_PARAM_INPUTS
 
-#define COLOR_ALPHA_PARAM_TAG_INPUTS(tag)                            \
+#define COLOR_ALPHA_PARAM_TAG_INPUTS(tag)                        \
     PARAM("color B", colorAlpha, inputRGBA_##tag, COLORALPHA_DB, \
-          string label = "RGBA "#tag, string widget = "null"),                                \
+          string label = "RGBA "#tag),                           \
     COLOR_PARAM_TAG_INPUTS(tag)
 
-#define COLOR_SPLIT_PARAM_INPUTS()                              \
-    BOOL("", useSplitInputs, 0,                                 \
-        int connectable = 0, string label = "Use Split Inputs", \
-        string widget = "checkBox"),                            \
-    COLOR("", inputRGB, COLOR_DB, string label = "RGB"),        \
-    FLOAT("", inputR, 0.0, string label = "R"),                 \
-    FLOAT("", inputG, 0.0, string label = "G"),                 \
-    FLOAT("", inputB, 0.0, string label = "B"),                 \
-    FLOAT("", inputA, 1.0, string label = "A")
+#define COLOR_SPLIT_PARAM_INPUTS                                 \
+    BOOL("", useSplitInputs, 0,                                  \
+         int connectable = 0, string label = "Use Split Inputs", \
+         string widget = "checkBox"),                            \
+    COLOR("", inputRGB, COLOR_DB, string label = "RGB"),         \
+    FLOAT("", inputR, 0.0, string label = "R"),                  \
+    FLOAT("", inputG, 0.0, string label = "G"),                  \
+    FLOAT("", inputB, 0.0, string label = "B"),                  \
+    FLOAT("", inputA, ALPHA_DB, string label = "A")
 
-#define COLOR_PARAM_OUTPUTS()                           \
+#define COLOR_PARAM_OUTPUTS                             \
     OUT_PARAM(colorAlpha, resultRGBA, COLORALPHA_ZERO), \
     OUT_COLOR(resultRGB, color(0.0)),                   \
     OUT_FLOAT(resultR, 0.0),                            \
@@ -59,7 +60,7 @@ void Color_Set_Outputs(colorAlpha resultRGBA, output color resultRGB,
     resultA = resultRGBA.A;
 }
 
-#define COLOR_PARAM_OUTPUTS_SET()            \
+#define COLOR_PARAM_OUTPUTS_SET              \
     Color_Set_Outputs(resultRGBA, resultRGB, \
                       resultR, resultG,      \
                       resultB, resultA)
