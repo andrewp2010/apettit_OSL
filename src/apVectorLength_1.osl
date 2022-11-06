@@ -1,0 +1,16 @@
+#include "lib/ShaderAPI.h"
+#include "lib/Vector.h"
+#include "lib/Float.h"
+
+shader apVectorLength_1
+[[
+    string help = "Return length of a vector",
+]]
+(
+    VECTOR_PARAM_INPUTS,
+
+    FLOAT_PARAM_OUTPUTS
+)
+{
+    resultF = length(inputV);
+} 
