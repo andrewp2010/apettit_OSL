@@ -1,0 +1,16 @@
+#include "lib/ShaderAPI.h"
+#include "lib/Float.h"
+
+shader apFloatMin_1
+[[
+    string help = "Returns max value between Input A and Input B"
+]]
+(
+    FLOAT_PARAM_TAG_INPUTS(A),
+    FLOAT_PARAM_TAG_INPUTS(B),
+
+    FLOAT_PARAM_OUTPUTS
+)
+{
+    resultF = min(inputF_A, inputF_B);
+}
