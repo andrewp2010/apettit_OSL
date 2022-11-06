@@ -8,9 +8,19 @@ shader apFloatAdd_1
 (
     FLOAT_PARAM_TAG_INPUTS(A),
     FLOAT_PARAM_TAG_INPUTS(B),
+    int clampResult = 0
+    [[
+        string help = "Clamp minimum to 0.0",
+        string label = "Clamp Result",
+        string widget = "checkBox",
+        int connectable = 0
+    ]],
 
     FLOAT_PARAM_OUTPUTS
 )
 {
     resultF = inputF_A + inputF_B; 
+
+    if (clampResult)
+        resultF = min(1.0, resultF);
 }
