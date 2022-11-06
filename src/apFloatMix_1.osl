@@ -3,7 +3,7 @@
 
 shader apFloatMix_1
 [[
-    string help = "Mix between Input A and Input B given a float Mix Value"
+    string help = "Mix float A and float B given a float mix value"
 ]]
 (
     FLOAT_PARAM_TAG_INPUTS(A),
