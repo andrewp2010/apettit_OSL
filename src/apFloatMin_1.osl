@@ -3,7 +3,7 @@
 
 shader apFloatMin_1
 [[
-    string help = "Returns max value between Input A and Input B"
+    string help = "Returns min value between float A and float B"
 ]]
 (
     FLOAT_PARAM_TAG_INPUTS(A),
