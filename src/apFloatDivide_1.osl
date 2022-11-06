@@ -1,0 +1,19 @@
+#include "lib/ShaderAPI.h"
+#include "lib/Float.h"
+
+shader apFloatDivide_1
+[[
+    string help = "Divide Input A and Input B. If Input B is 0.0 then returns 0.0"
+]]
+(
+    FLOAT_PARAM_TAG_INPUTS(A),
+    FLOAT_PARAM_TAG_INPUTS(B),
+
+    FLOAT_PARAM_OUTPUTS
+)
+{
+    if (inputF_B == 0.0)
+        resultF = 0.0;
+    else
+        resultF = inputF_A / inputF_B; 
+}
