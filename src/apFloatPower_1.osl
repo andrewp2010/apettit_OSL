@@ -3,7 +3,7 @@
 
 shader apFloatPower_1
 [[
-    string help = "Input A to the power of Input B"
+    string help = "Float A to the power of float B"
 ]]
 (
     FLOAT_PARAM_TAG_INPUTS(A),
