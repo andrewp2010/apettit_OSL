@@ -3,6 +3,17 @@
 #ifndef FLOAT_H
 #define FLOAT_H
 
+#define FLOAT_DB 1.0
+
+#define FLOAT_PARAM_INPUTS \
+    FLOAT("", inputF, FLOAT_DB, string label = "Float")
+
+#define FLOAT_PARAM_TAG_INPUTS(tag) \
+    FLOAT("", inputF_##tag, FLOAT_DB, string label = "Float "#tag)
+
+#define FLOAT_PARAM_OUTPUTS \
+    OUT_FLOAT(resultF, 0.0)
+
 #define FLOAT_LAYER(lyrNum)                                                       \
     STRING(("Layer" #lyrNum), op##lyrNum, "Normal",                               \
         int connectable = 0, string label = "Operation", string widget = "popup", \
