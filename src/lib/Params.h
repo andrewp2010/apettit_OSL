@@ -11,7 +11,7 @@
 #define NORMAL(pg, name, val, ...)  PARAM(pg, normal, name, val, __VA_ARGS__)
 #define POINT(pg, name, val, ...)   PARAM(pg, point, name, val, __VA_ARGS__)
 #define STRING(pg, name, val, ...)  PARAM(pg, string, name, val, __VA_ARGS__) 
-#define VEC(pg, name, val, ...)     PARAM(pg, vector, name, val, __VA_ARGS__)
+#define VECTOR(pg, name, val, ...)     PARAM(pg, vector, name, val, __VA_ARGS__)
 #define BOOL(pg, name, val, ...)    INT(pg, name, val, \
                                         string widget = "checkBox", __VA_ARGS__)
 
