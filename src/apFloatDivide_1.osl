@@ -3,7 +3,7 @@
 
 shader apFloatDivide_1
 [[
-    string help = "Divide Input A and Input B. If Input B is 0.0 then returns 0.0"
+    string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0"
 ]]
 (
     FLOAT_PARAM_TAG_INPUTS(A),
