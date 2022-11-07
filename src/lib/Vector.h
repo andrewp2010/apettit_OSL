@@ -5,10 +5,10 @@
 
 #define VECTOR_DB vector(0.0, 0.0, 0.0)
 
-#define VECTOR_PARAM_INPUTS \
+#define VECTOR_INPUTS \
     VECTOR("", inputV, VECTOR_DB, string label = "Vector")
 
-#define VECTOR_PARAM_OUTPUTS \
+#define VECTOR_OUTPUTS \
     OUT_FLOAT(resultV, 0.0)
 
-#endif // VECTOR_H              
+#endif // VECTOR_H

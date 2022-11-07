@@ -5,14 +5,15 @@
 
 #define FLOAT_DB 1.0
 
-#define FLOAT_PARAM_INPUTS \
+#define FLOAT_INPUTS \
     FLOAT("", inputF, FLOAT_DB, string label = "Float")
 
-#define FLOAT_PARAM_TAG_INPUTS(tag) \
+#define FLOAT_TAG_INPUTS(tag) \
     FLOAT("", inputF_##tag, FLOAT_DB, string label = "Float "#tag)
 
-#define FLOAT_PARAM_OUTPUTS \
-    OUT_FLOAT(resultF, 0.0)
+#define FLOAT_OUTPUTS                 \
+    OUT_FLOAT(resultF, 0.0),           \
+    OUT_FLOAT(invertF, (1 - resultF))
 
 #define FLOAT_LAYER(lyrNum)                                                       \
     STRING(("Layer" #lyrNum), op##lyrNum, "Normal",                               \
