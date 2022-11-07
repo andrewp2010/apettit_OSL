@@ -7,9 +7,9 @@ shader apVectorLength_1
     string help = "Return length of a vector",
 ]]
 (
-    VECTOR_PARAM_INPUTS,
+    VECTOR_INPUTS,
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
     resultF = length(inputV);
