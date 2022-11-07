@@ -29,8 +29,10 @@ def compile(renderer, shader):
     # output
     ap.print.info(renderer + ': ' + input[2])
 
-    #compile osl and output
+    # compile osl
     cmd = 'cmd /c "oslc %s -o %s"' % (inputFile, outputFile)
+
+    # print compile output
     process = os.popen(cmd)
     processLog = process.read()
     process.close()
