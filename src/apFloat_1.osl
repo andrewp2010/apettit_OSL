@@ -6,9 +6,9 @@ shader apFloat_1
     string help = "Simple float pass-through operation"
 ]]
 (
-    FLOAT_PARAM_INPUTS,
+    FLOAT_INPUTS,
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
     resultF = inputF;

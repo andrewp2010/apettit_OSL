@@ -7,7 +7,7 @@ shader apFloatRemap_1
     string help = "Remap float operation",
 ]]
 (
-    FLOAT_PARAM_INPUTS,
+    FLOAT_INPUTS,
 
     float inputMin = 0.0
     [[ string label = "Input Min" ]],
@@ -18,8 +18,10 @@ shader apFloatRemap_1
     float outputMax = 1.0
     [[ string label = "Output Max" ]],
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
-    resultF = Math_RemapFloat(inputF, inputMin, inputMax, outputMin, outputMax);
+    resultF = RemapFloat(inputF, 
+                         inputMin, inputMax,
+                         outputMin, outputMax);
 } 

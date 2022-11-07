@@ -6,8 +6,8 @@ shader apFloatAdd_1
     string help = "Add float A and float B"
 ]]
 (
-    FLOAT_PARAM_TAG_INPUTS(A),
-    FLOAT_PARAM_TAG_INPUTS(B),
+    FLOAT_TAG_INPUTS(A),
+    FLOAT_TAG_INPUTS(B),
     int clampResult = 0
     [[
         string help = "Clamp minimum to 0.0",
@@ -16,7 +16,7 @@ shader apFloatAdd_1
         int connectable = 0
     ]],
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
     resultF = inputF_A + inputF_B; 

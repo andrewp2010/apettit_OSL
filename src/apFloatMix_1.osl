@@ -6,12 +6,12 @@ shader apFloatMix_1
     string help = "Mix float A and float B given a float mix value"
 ]]
 (
-    FLOAT_PARAM_TAG_INPUTS(A),
-    FLOAT_PARAM_TAG_INPUTS(B),
+    FLOAT_TAG_INPUTS(A),
+    FLOAT_TAG_INPUTS(B),
     float mixValue = 0.5
     [[ string label = "Mix Value" ]],
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
     resultF = mix(inputF_A, inputF_B, mixValue);

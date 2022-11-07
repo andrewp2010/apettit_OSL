@@ -6,8 +6,8 @@ shader apFloatPower_1
     string help = "Float A to the power of float B"
 ]]
 (
-    FLOAT_PARAM_TAG_INPUTS(A),
-    FLOAT_PARAM_TAG_INPUTS(B),
+    FLOAT_TAG_INPUTS(A),
+    FLOAT_TAG_INPUTS(B),
     int clampResult = 0
     [[
         string help = "Clamp maximum to 1.0",
@@ -16,7 +16,7 @@ shader apFloatPower_1
         int connectable = 0
     ]],
 
-    FLOAT_PARAM_OUTPUTS
+    FLOAT_OUTPUTS
 )
 {
     resultF = pow(inputF_A, inputF_B);
