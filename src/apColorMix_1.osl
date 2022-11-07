@@ -6,34 +6,30 @@ shader apColorMix_1
     string help = "Mix color A and color B given a float mix value"
 ]]
 (
-    COLOR_PARAM_TAG_INPUTS(A),
-    COLOR_PARAM_TAG_INPUTS(B),
+    COLOR_TAG_INPUTS(A),
+    COLOR_TAG_INPUTS(B),
 
     string alphaMixType = "A"
     [[ 
-        int connectable = 0, string label = "Alpha Mix", string widget = "popup",
+        int connectable = 0, 
+        string label = "Alpha Mix", 
+        string widget = "popup",
         string options = "A|Mix|B"
     ]],
     float mixValue = 0.5
     [[ string label = "Mix Value" ]],
 
-    COLOR_PARAM_OUTPUTS
+    COLOR_OUTPUTS
 )
 {
     resultRGBA.RGB = mix(inputRGB_A, inputRGB_B, mixValue);
     
     if (alphaMixType == "A")
-    {
         resultRGBA.A = inputA_A;
-    }
     else if (alphaMixType == "Mix")
-    {
         resultRGBA.A = mix(inputA_A, inputA_B, mixValue);
-    }
     else if (alphaMixType == "B")
-    {
         resultRGBA.A = inputA_B;
-    }
 
-    COLOR_PARAM_OUTPUTS_SET;
+    COLOR_OUTPUTS_SET;
 }

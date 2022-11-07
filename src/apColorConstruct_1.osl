@@ -6,15 +6,13 @@ shader apColorConstruct_1
     string help = "Create color from split inputs",
 ]]
 (
-    COLOR_SPLIT_PARAM_INPUTS,
+    COLOR_SPLIT_INPUTS,
 
-    COLOR_PARAM_OUTPUTS
+    COLOR_OUTPUTS
 )
 {
     if (!useSplitInputs)
-    {
         resultRGBA.RGB = inputRGB;
-    }
     else 
     {
         resultRGBA.RGB[0] = inputR;
@@ -23,5 +21,5 @@ shader apColorConstruct_1
     }
     resultRGBA.A = inputA;
 
-    COLOR_PARAM_OUTPUTS_SET;
+    COLOR_OUTPUTS_SET;
 } 
