@@ -1,0 +1,16 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Float.h"
+
+shader apFloatMax_1
+[[
+    string help = "Returns max value between float A and float B"
+]]
+(
+    FLOAT_TAG_INPUTS(A),
+    FLOAT_TAG_INPUTS(B),
+
+    FLOAT_OUTPUTS
+)
+{
+    resultF = max(inputF_A, inputF_B);
+}

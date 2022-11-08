@@ -1,0 +1,17 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Manifold.h"
+
+shader apManifoldTransform_1
+[[
+    string help = "Create color from split inputs",
+]]
+(
+    MANIFOLD_INPUT,
+    MANIFOLD_XFORM_PARAMS,
+    MANIFOLD_OUTPUTS
+)
+{
+    MANIFOLD_TRANSFORM;
+
+    MANIFOLD_OUTPUTS_SET;
+} 
