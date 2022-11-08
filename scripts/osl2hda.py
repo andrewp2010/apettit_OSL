@@ -2,38 +2,31 @@ import ap, os, platform, rfh
 
 # check for /bin dir
 if (os.path.isdir("bin") == False):
-    ap.print.info("make /bin")
+    ap.print.info("no /bin compile osl shaders with oslBuild.py")
     os.mkdir("bin")
 
-shaderPaths = ["bin"]
-libName = 'APETTIT_OSL_LIB'
-otlLibFile = "otls/" + libName + ".hda"
-iconPath = "src/icon/apettit_icon.png"
+for renderer in os.listdir("bin"):
+    # get renderer specific parameters
+    rendererPaths = [] # convertutils -> renderPaths is expecting an array
+    rendererPaths.append("bin/" + renderer)
+    libName = "APETTIT_OSL_"
+    otlLibFile = "otls/" + libName + renderer.upper() + ".hda"
 
-# remove old lib hda
-if (os.path.exists(otlLibFile)):
-    print("remove old APETTIT_OSL_LIB inst")
-    os.remove(otlLibFile)
+    # remove old hda
+    if (os.path.exists(otlLibFile)):
+        print("remove outdated %s" % otlLibFile)
+        os.remove(otlLibFile)
 
-envs = ['RMAN_SHADERPATH']
+    # convert method
+    processLog = rfh.convertutils.main(rendererPaths,
+                                       otlfile = otlLibFile,
+                                       icon = "icon/apettit_icon.png",
+                                       menu = "apettit",
+                                       namespace = "apettit",
+                                       originalCase = True)
 
-for env in envs:
-    try:
-        envpath = os.environ.get(env)
-        if envpath:
-            if platform.system() == 'Windows':
-                shaderpaths = envpath.split(';')
-            else:
-                shaderpaths = envpath.split(':')
-            processLog = rfh.convertutils.main(shaderPaths,
-                                               otlfile = otlLibFile,
-                                               icon = iconPath,
-                                               menu = "apettit",
-                                            originalCase = True)
-    except:
-        ap.print.error("RFH: Could not register %s" % otlLibFile)
+    # output
+    if(processLog == None):
+        ap.print.success(("SUCCESSFULLY converted %s:" % (libName + renderer)))
+        ap.print.info((otlLibFile + '\n'))
 
-# output
-if(processLog == None):
-    ap.print.success(("SUCCESSFULLY converted %s:" % libName))
-    ap.print.info(("otls/%s.hda" % libName))
