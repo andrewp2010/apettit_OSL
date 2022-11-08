@@ -2,5 +2,5 @@
 *.hda
 sandbox/backup/
 scripts/ap/__pycache__
-src/ARNOLD
+src/arnold
 .vscode
