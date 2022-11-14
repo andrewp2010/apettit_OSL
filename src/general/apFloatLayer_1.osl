@@ -34,5 +34,5 @@ shader apFloatLayer_1
     FLOAT_LAYER_OPERATION(4, resultF);
     FLOAT_LAYER_OPERATION(5, resultF);
 
-    FLOAT_OUTPUTS_SET
+    FLOAT_OUTPUTS_SET;
 }
