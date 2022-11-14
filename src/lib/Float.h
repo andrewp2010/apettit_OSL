@@ -49,7 +49,7 @@
             }                                                                        \
             else if (op##lyrNum == "Subtract")                                       \
             {                                                                        \
-                lyrVal -= result;                                                    \
+                lyrVal = result - lyrVal;                                            \
             }                                                                        \
             else if (op##lyrNum == "Overlay")                                        \
             {                                                                        \
