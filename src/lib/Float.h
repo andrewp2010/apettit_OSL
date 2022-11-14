@@ -16,13 +16,13 @@
     OUT_FLOAT(invertF, (1 - resultF))
 
 #define FLOAT_OUTPUTS_SET \
-    invertF = 1 - resultF;
+    invertF = 1 - resultF
 
 #define FLOAT_LAYER(lyrNum)                                                       \
     STRING(("Layer" #lyrNum), op##lyrNum, "Normal",                               \
         int connectable = 0, string label = "Operation", string widget = "popup", \
         string options = "Normal|Multiply|Screen|Add|Subtract|Overlay"),          \
-    FLOAT(("Layer" #lyrNum), val##lyrNum, 1.0,                                      \
+    FLOAT(("Layer" #lyrNum), val##lyrNum, 1.0,                                    \
         string label = "Value"),                                                  \
     FLOAT(("Layer" #lyrNum), wt##lyrNum, 1.0,                                     \
         string label = "Weight")
@@ -30,7 +30,7 @@
 #define FLOAT_LAYER_OPERATION(lyrNum, result)                                        \
     if (numLyr >= lyrNum)                                                            \
         {                                                                            \
-            float lyrVal = val##lyrNum;                                                \
+            float lyrVal = val##lyrNum;                                              \
             if (op##lyrNum == "Normal")                                              \
             {                                                                        \
                 lyrVal = lyrVal;                                                     \
