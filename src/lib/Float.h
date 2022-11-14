@@ -12,7 +12,7 @@
     FLOAT("", inputF_##tag, FLOAT_DB, string label = "Float "#tag)
 
 #define FLOAT_OUTPUTS                 \
-    OUT_FLOAT(resultF, 0.0),           \
+    OUT_FLOAT(resultF, 0.0),          \
     OUT_FLOAT(invertF, (1 - resultF))
 
 #define FLOAT_OUTPUTS_SET \
