@@ -18,6 +18,14 @@ shader apFloatLayer_1
     [[
         string label = "Base Value"
     ]],
+    int clampResult = 0
+    [[
+        string help = "Clamp minimum to 0.0",
+        string label = "Clamp Result",
+        string widget = "checkBox",
+        int connectable = 0
+    ]],
+
     FLOAT_LAYER(1),
     FLOAT_LAYER(2),
     FLOAT_LAYER(3),
@@ -33,6 +41,9 @@ shader apFloatLayer_1
     FLOAT_LAYER_OPERATION(3, resultF);
     FLOAT_LAYER_OPERATION(4, resultF);
     FLOAT_LAYER_OPERATION(5, resultF);
+
+    if (clampResult)
+        resultF = clamp(resultF, 0, 1);
 
     FLOAT_OUTPUTS_SET;
 }
