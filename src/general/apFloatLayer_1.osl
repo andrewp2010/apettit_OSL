@@ -1,0 +1,38 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Float.h"
+
+shader apFloatLayer_1
+[[
+    string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0"
+]]
+(
+    int numLyr = 1
+    [[
+        int connectable = 0,
+        string help = "Number of layers to compute",
+        string label = "Number of Layers",
+        int slider = 1, int slidermin = 0, int slidermax = 5
+    ]],
+
+    float baseF = 1.0
+    [[
+        string label = "Base Value"
+    ]],
+    FLOAT_LAYER(1),
+    FLOAT_LAYER(2),
+    FLOAT_LAYER(3),
+    FLOAT_LAYER(4),
+    FLOAT_LAYER(5),
+ 
+    FLOAT_OUTPUTS
+)
+{
+    resultF = baseF;
+    FLOAT_LAYER_OPERATION(1, resultF);
+    FLOAT_LAYER_OPERATION(2, resultF);
+    FLOAT_LAYER_OPERATION(3, resultF);
+    FLOAT_LAYER_OPERATION(4, resultF);
+    FLOAT_LAYER_OPERATION(5, resultF);
+
+    FLOAT_OUTPUTS_SET
+}
