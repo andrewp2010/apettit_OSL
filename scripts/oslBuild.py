@@ -1,6 +1,6 @@
 import ap, argparse, copy, glob, os
 
-def compile(renderer, shader):
+def Compile(renderer, shader):
     # format inputFile/outputFile to [dir, shaderName, file ext]
     input = []
     input.append("src")
@@ -66,12 +66,12 @@ if (args.lib):
         for file in glob.glob(rendererDir + "\\*.osl"):
             _, shader = os.path.split(file)
             _, renderer = os.path.split(_)
-            compile(renderer, shader)
+            Compile(renderer, shader)
 else:
     # get renderer and shader
     _, shader = os.path.split(args.shader)
     _, renderer = os.path.split(_)
-    compile(renderer, shader)
+    Compile(renderer, shader)
 
 if (args.convert):
     exec(open("scripts\osl2hda.py").read())
