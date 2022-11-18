@@ -1,6 +1,9 @@
 *.oso
 *.hda
+
 sandbox/backup/
 scripts/ap/__pycache__
 src/arnold
+
 .vscode
+TODO.md
