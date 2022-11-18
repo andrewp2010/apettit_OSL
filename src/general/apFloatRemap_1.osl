@@ -3,9 +3,7 @@
 #include "../lib/Math.h"
 
 shader apFloatRemap_1
-[[
-    string help = "Remap float operation",
-]]
+[[ string help = "Remap float operation" ]]
 (
     FLOAT_INPUTS,
 
@@ -24,4 +22,5 @@ shader apFloatRemap_1
     resultF = RemapFloat(inputF, 
                          inputMin, inputMax,
                          outputMin, outputMax);
+    FLOAT_OUTPUTS_SET;
 } 

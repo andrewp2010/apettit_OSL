@@ -2,9 +2,7 @@
 #include "../lib/Manifold.h"
 
 shader apManifoldTransform_1
-[[
-    string help = "Create color from split inputs",
-]]
+[[ string help = "Create color from split inputs" ]]
 (
     MANIFOLD_INPUT,
     MANIFOLD_XFORM_PARAMS,

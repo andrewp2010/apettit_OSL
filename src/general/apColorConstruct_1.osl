@@ -2,9 +2,7 @@
 #include "../lib/Color.h"
 
 shader apColorConstruct_1
-[[
-    string help = "Create color from split inputs",
-]]
+[[ string help = "Create color from split inputs" ]]
 (
     COLOR_SPLIT_INPUTS,
 

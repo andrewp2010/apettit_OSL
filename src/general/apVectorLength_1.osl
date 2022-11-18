@@ -3,9 +3,7 @@
 #include "../lib/Float.h"
 
 shader apVectorLength_1
-[[
-    string help = "Return length of a vector",
-]]
+[[ string help = "Return length of a vector" ]]
 (
     VECTOR_INPUTS,
 
@@ -13,4 +11,5 @@ shader apVectorLength_1
 )
 {
     resultF = length(inputV);
+    FLOAT_OUTPUTS_SET;
 } 

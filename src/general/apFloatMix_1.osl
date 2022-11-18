@@ -2,9 +2,7 @@
 #include "../lib/Float.h"
 
 shader apFloatMix_1
-[[
-    string help = "Mix float A and float B given a float mix value"
-]]
+[[ string help = "Mix float A and float B given a float mix value" ]]
 (
     FLOAT_TAG_INPUTS(A),
     FLOAT_TAG_INPUTS(B),
@@ -15,4 +13,5 @@ shader apFloatMix_1
 )
 {
     resultF = mix(inputF_A, inputF_B, mixValue);
+    FLOAT_OUTPUTS_SET;
 }

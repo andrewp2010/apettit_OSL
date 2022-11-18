@@ -2,9 +2,7 @@
 #include "../lib/Color.h"
 
 shader apColorMix_1
-[[
-    string help = "Mix color A and color B given a float mix value"
-]]
+[[ string help = "Mix color A and color B given a float mix value" ]]
 (
     COLOR_TAG_INPUTS(A),
     COLOR_TAG_INPUTS(B),

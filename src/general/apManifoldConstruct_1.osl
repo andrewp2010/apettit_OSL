@@ -2,9 +2,7 @@
 #include "../lib/Manifold.h"
 
 shader apManifoldConstruct_1
-[[
-    string help = "Create color from split inputs",
-]]
+[[ string help = "Create color from split inputs" ]]
 (
     point inputP = point(0, 0, 0)
     [[ string label = "Point" ]],
@@ -33,7 +31,7 @@ shader apManifoldConstruct_1
     if (useSplitInputs)
         refP = point(inputP_X, inputP_Y, inputP_Z);
 
-    Manifold_Construct(refP, inputN, resultManifold);
+    ManifoldConstruct(refP, inputN, resultManifold);
 
     MANIFOLD_TRANSFORM;
 

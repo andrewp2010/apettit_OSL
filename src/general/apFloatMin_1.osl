@@ -2,9 +2,7 @@
 #include "../lib/Float.h"
 
 shader apFloatMin_1
-[[
-    string help = "Returns min value between float A and float B"
-]]
+[[ string help = "Returns min value between float A and float B" ]]
 (
     FLOAT_TAG_INPUTS(A),
     FLOAT_TAG_INPUTS(B),
@@ -13,4 +11,5 @@ shader apFloatMin_1
 )
 {
     resultF = min(inputF_A, inputF_B);
+    FLOAT_OUTPUTS_SET;
 }

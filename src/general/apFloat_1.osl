@@ -2,9 +2,7 @@
 #include "../lib/Float.h"
 
 shader apFloat_1
-[[
-    string help = "Simple float pass-through operation"
-]]
+[[ string help = "Simple float pass-through operation" ]]
 (
     FLOAT_INPUTS,
 
@@ -12,4 +10,6 @@ shader apFloat_1
 )
 {
     resultF = inputF;
+    FLOAT_OUTPUTS_SET;
+
 }

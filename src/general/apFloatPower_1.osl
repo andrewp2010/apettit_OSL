@@ -2,18 +2,16 @@
 #include "../lib/Float.h"
 
 shader apFloatPower_1
-[[
-    string help = "Float A to the power of float B"
-]]
+[[ string help = "Float A to the power of float B" ]]
 (
     FLOAT_TAG_INPUTS(A),
     FLOAT_TAG_INPUTS(B),
     int clampResult = 0
     [[
+        int connectable = 0,
         string help = "Clamp maximum to 1.0",
         string label = "Clamp Result",
-        string widget = "checkBox",
-        int connectable = 0
+        string widget = "checkBox"
     ]],
 
     FLOAT_OUTPUTS
@@ -23,4 +21,6 @@ shader apFloatPower_1
 
     if (clampResult)
         resultF = min(1.0, resultF);
+
+    FLOAT_OUTPUTS_SET;
 }

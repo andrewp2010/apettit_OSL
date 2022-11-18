@@ -2,9 +2,7 @@
 #include "../lib/Float.h"
 
 shader apFloatLayer_1
-[[
-    string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0"
-]]
+[[ string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0" ]]
 (
     int numLyr = 1
     [[
@@ -15,15 +13,13 @@ shader apFloatLayer_1
     ]],
 
     float baseF = 1.0
-    [[
-        string label = "Base Value"
-    ]],
+    [[ string label = "Base Value" ]],
     int clampResult = 0
     [[
+        int connectable = 0,
         string help = "Clamp minimum to 0.0",
         string label = "Clamp Result",
-        string widget = "checkBox",
-        int connectable = 0
+        string widget = "checkBox"
     ]],
 
     FLOAT_LAYER(1),

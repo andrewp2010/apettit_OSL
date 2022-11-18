@@ -2,9 +2,7 @@
 #include "../lib/Color.h"
 
 shader apColor_1
-[[
-    string help = "Simple color pass-through operation",
-]]
+[[ string help = "Simple color pass-through operation" ]]
 (
     color inputRGB = COLOR_DB
     [[

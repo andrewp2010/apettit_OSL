@@ -2,9 +2,7 @@
 #include "../lib/Float.h"
 
 shader apFloatDivide_1
-[[
-    string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0"
-]]
+[[ string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0" ]]
 (
     FLOAT_TAG_INPUTS(A),
     FLOAT_TAG_INPUTS(B),
@@ -16,4 +14,6 @@ shader apFloatDivide_1
         resultF = 0.0;
     else
         resultF = inputF_A / inputF_B; 
+
+    FLOAT_OUTPUTS_SET;
 }
