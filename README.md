@@ -55,10 +55,13 @@ You can download source code from [GitHub](https://github.com/andrewp2010/apetti
 Note: if there are any spaces in your environment variable paths remember to place the path within "". This will commonly be the case for the HYTHONPATH on windows
 
 #### Houdini.env:
-| Variable             | Path                     |
-| -------------------- |--------------------------|
-| HOUDINI_OTLSCAN_PATH | <apettit_OSL dir>\otls;& |
-| RMAN_SHADERPATH      | <apettit_OSL dir>\bin;&  |
+| Variable             | Path                               |
+| -------------------- | ---------------------------------- |
+| HOUDINI_OTLSCAN_PATH | <apettit_OSL dir>\otls;&           |
+| RMAN_SHADERPATH      | <apettit_OSL dir>\bin\general;&    |
+| RMAN_SHADERPATH      | <apettit_OSL dir>\bin\renderman;&  |
+
+Note: see [Library Structure](#library-structure) for RMAN_SHADERPATH logic
 
 ### 4. Compile OSL Source Code
 ```
@@ -71,6 +74,13 @@ Note: if there are any spaces in your environment variable paths remember to pla
 ```
 
 ## Additional Information
+
+### Library Structure
+This OSL library supports shaders that are renderer specific and generally supported. Where shaders are placed in the ```src``` is important for this reason. Renderer specific shaders should be placed within a folder that is specific to the renderer, e.g. ```src\renderman``` (the user can add any number of folders they desire). General shaders can be placed in ```src\general```. At compile time the ```osl2hda.py``` will create different library files dependent upon folders within ```src```. Therefore, renderers will generally need an environment variable that points to both the general and their renderer specific bin folder. This is why ```RMAN_SHADERPATH``` requires two paths in the [setup above](#houdinienv).
+
+### Namespace and Versioning
+All general versioning and namespace practices apply to this library.
+The ```oslBuild.py``` script recognizes specific parameters for versioning and namespace. By default the namespace for all shaders compiled using ```oslBuild.py``` will be ```apettit```. If you would like to change that you will have to change the namespace parameter within the script. The shader version is decided by the number following the shaders filename: ```apColor_1.osl```. By default houdini will only provide the option for the most recent version of a shader, unless a file is already referencing an older version, then it will provide reference to the version in the file and the most recent version.
 
 ### Scripts
 
