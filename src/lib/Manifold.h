@@ -40,14 +40,14 @@ struct Manifold {
     OUT_FLOAT(resultY, 0),                              \
     OUT_FLOAT(resultZ, 0)
 
-void Manifold_Construct(point P, normal N, output Manifold M)
+void ManifoldConstruct(point P, normal N, output Manifold M)
 {
     M.Q = P;
     M.QN = N;
     M.Qradius = 0.0;
 }
 
-void Manifold_Set_Outputs(Manifold resultManifold,
+void ManifoldSetOutputs(Manifold resultManifold,
                           output float resultS,
                           output float resultT,
                           output point resultPoint,
@@ -68,7 +68,7 @@ void Manifold_Set_Outputs(Manifold resultManifold,
 }
 
 #define MANIFOLD_OUTPUTS_SET             \
-    Manifold_Set_Outputs(resultManifold, \
+    ManifoldSetOutputs(resultManifold,   \
                          resultS,        \
                          resultT,        \
                          resultPoint,    \
@@ -78,7 +78,7 @@ void Manifold_Set_Outputs(Manifold resultManifold,
                          resultY,        \
                          resultZ)
 
-void Manifold_Transform(output Manifold manifold,
+void ManifoldTransform(output Manifold manifold,
                     point origin,
                     float frequency,
                     vector scale,
@@ -119,13 +119,13 @@ void Manifold_Transform(output Manifold manifold,
                                     abs(scaleFactor[2])));
 }
 
-#define MANIFOLD_TRANSFORM         \
-    Manifold_Transform(resultManifold, \
-                    origin,        \
-                    frequency,     \
-                    scale,         \
-                    offset,        \
-                    offsetVector,  \
+#define MANIFOLD_TRANSFORM            \
+    ManifoldTransform(resultManifold, \
+                    origin,           \
+                    frequency,        \
+                    scale,            \
+                    offset,           \
+                    offsetVector,     \
                     rotation);
 
 #endif //MANIFOLD_H

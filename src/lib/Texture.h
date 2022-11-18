@@ -1,3 +1,4 @@
+#include "Color.h"
 #include "Params.h"
 #include "Manifold.h"
 
@@ -30,7 +31,7 @@
         string label = "Output Min", int connectable = 0),                                  \
     FLOAT("Remap", outputMax, 1.0,                                                          \
         string label = "Output Max", int connectable = 0),                                  \
-    COLOR("Missing Color", missingRGB, color(1.0, 0.0, 1.0),                                \
+    COLOR("Missing Color", missingRGB, COLOR_DB,                                            \
         string label = "Missing Color", string help = "Default color if no texture found"), \
     FLOAT("Missing Color", missingA, 1.0,                                                   \
         string label = "Missing Alpha", string help = "Default color if no texture found")

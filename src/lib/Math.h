@@ -37,9 +37,7 @@ point RotateX(float angle, point Q)
         return RotateX(sinAng, cosAng, Q);
     }
     else
-    {
         return Q;
-    }
 }
 
 point RotateY(float sinAng, float cosAng, point Q)
@@ -57,9 +55,7 @@ point RotateY(float angle, point Q)
         return RotateY(sinAng, cosAng, Q);
     }
     else
-    {
         return Q;
-    }
 }
 
 point RotateZ(float sinAng, float cosAng, point Q)
@@ -77,9 +73,7 @@ point RotateZ(float angle, point Q)
         return RotateZ(sinAng, cosAng, Q);
     }
     else
-    {
         return Q;
-    }
 }
 
 #endif // MATH_H

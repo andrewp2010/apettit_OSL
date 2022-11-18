@@ -10,6 +10,9 @@ struct colorAlpha
 };
  
 #define COLOR_DB color(1.0, 0.0, 1.0)
+#define COLOR_R_DB 1.0
+#define COLOR_G_DB 0.0
+#define COLOR_B_DB 1.0
 #define ALPHA_DB 1.0
 #define COLORALPHA_DB { COLOR_DB, 1.0 }
 #define COLORALPHA_ZERO {color(0.0), 0.0}
@@ -18,17 +21,17 @@ struct colorAlpha
     COLOR("", inputRGB, COLOR_DB, string label = "RGB"), \
     FLOAT("", inputA, ALPHA_DB, string label = "Alpha")
 
-#define COLOR_TAG_INPUTS(tag)                                                 \
-    COLOR("color "#tag, inputRGB_##tag, COLOR_DB, string label = "RGB "#tag), \
-    FLOAT("color "#tag, inputA_##tag, ALPHA_DB, string label = "Alpha "#tag)
+#define COLOR_TAG_INPUTS(TAG)                                                 \
+    COLOR("color "#TAG, inputRGB_##TAG, COLOR_DB, string label = "RGB "#TAG), \
+    FLOAT("color "#TAG, inputA_##TAG, ALPHA_DB, string label = "Alpha "#TAG)
 
 #define COLOR_ALPHA_INPUTS                                                  \
     PARAM("", colorAlpha, inputRGBA, COLORALPHA_DB, string label = "RGBA"), \
     COLOR_PARAM_INPUTS
 
-#define COLOR_ALPHA_TAG_INPUTS(tag)                              \
-    PARAM("color B", colorAlpha, inputRGBA_##tag, COLORALPHA_DB, \
-          string label = "RGBA "#tag),                           \
+#define COLOR_ALPHA_TAG_INPUTS(TAG)                              \
+    PARAM("color B", colorAlpha, inputRGBA_##TAG, COLORALPHA_DB, \
+          string label = "RGBA "#TAG),                           \
     COLOR_PARAM_TAG_INPUTS(tag)
 
 #define COLOR_SPLIT_INPUTS                                       \
@@ -36,9 +39,9 @@ struct colorAlpha
          int connectable = 0, string label = "Use Split Inputs", \
          string widget = "checkBox"),                            \
     COLOR("", inputRGB, COLOR_DB, string label = "RGB"),         \
-    FLOAT("", inputR, 0.0, string label = "R"),                  \
-    FLOAT("", inputG, 0.0, string label = "G"),                  \
-    FLOAT("", inputB, 0.0, string label = "B"),                  \
+    FLOAT("", inputR, COLOR_R_DB, string label = "R"),           \
+    FLOAT("", inputG, COLOR_G_DB, string label = "G"),           \
+    FLOAT("", inputB, COLOR_B_DB, string label = "B"),           \
     FLOAT("", inputA, ALPHA_DB, string label = "A")
 
 #define COLOR_OUTPUTS                                   \
