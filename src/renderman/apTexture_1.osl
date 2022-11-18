@@ -4,9 +4,7 @@
 #include "../lib/Texture.h"
 
 shader apTexture_1
-[[
-    string help = "Read texture map"
-]]
+[[ string help = "Read texture map" ]]
 (
     TEXTURE_INPUTS,
 
