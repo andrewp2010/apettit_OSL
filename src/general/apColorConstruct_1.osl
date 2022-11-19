@@ -6,7 +6,7 @@ shader apColorConstruct_1
 (
     COLOR_SPLIT_INPUTS,
 
-    COLOR_OUTPUTS
+    COLOR_ALPHA_OUTPUTS
 )
 {
     if (!useSplitInputs)
@@ -19,5 +19,5 @@ shader apColorConstruct_1
     }
     resultRGBA.A = inputA;
 
-    COLOR_OUTPUTS_SET;
+    COLOR_ALPHA_OUTPUTS_SET;
 } 

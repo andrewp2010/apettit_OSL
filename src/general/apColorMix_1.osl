@@ -17,7 +17,7 @@ shader apColorMix_1
     float mixValue = 0.5
     [[ string label = "Mix Value" ]],
 
-    COLOR_OUTPUTS
+    COLOR_ALPHA_OUTPUTS
 )
 {
     resultRGBA.RGB = mix(inputRGB_A, inputRGB_B, mixValue);
@@ -29,5 +29,5 @@ shader apColorMix_1
     else if (alphaMixType == "B")
         resultRGBA.A = inputA_B;
 
-    COLOR_OUTPUTS_SET;
+    COLOR_ALPHA_OUTPUTS_SET;
 }

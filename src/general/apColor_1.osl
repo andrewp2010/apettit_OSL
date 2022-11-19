@@ -10,8 +10,9 @@ shader apColor_1
         string label = "RGB"
     ]],
     
-    output color resultRGB = color(0.0)
+    COLOR_OUTPUTS
 )
 {
     resultRGB = inputRGB;
+    COLOR_OUTPUTS_SET;
 } 
