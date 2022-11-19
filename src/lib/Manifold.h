@@ -79,12 +79,12 @@ void ManifoldSetOutputs(Manifold resultManifold,
                          resultZ)
 
 void ManifoldTransform(output Manifold manifold,
-                    point origin,
-                    float frequency,
-                    vector scale,
-                    float offset,
-                    vector offsetVector,
-                    point rotation)
+                        point origin,
+                        float frequency,
+                        vector scale,
+                        float offset,
+                        vector offsetVector,
+                        point rotation)
 {
     manifold.Q -= origin;
 
