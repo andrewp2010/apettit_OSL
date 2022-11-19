@@ -44,7 +44,13 @@ struct colorAlpha
     FLOAT("", inputB, COLOR_B_DB, string label = "B"),           \
     FLOAT("", inputA, ALPHA_DB, string label = "A")
 
-#define COLOR_OUTPUTS                                   \
+#define COLOR_OUTPUTS                 \
+    OUT_COLOR(resultRGB, color(0.0)), \
+    OUT_FLOAT(resultR, 0.0),          \
+    OUT_FLOAT(resultG, 0.0),          \
+    OUT_FLOAT(resultB, 0.0)
+
+#define COLOR_ALPHA_OUTPUTS                             \
     OUT_PARAM(colorAlpha, resultRGBA, COLORALPHA_ZERO), \
     OUT_COLOR(resultRGB, color(0.0)),                   \
     OUT_FLOAT(resultR, 0.0),                            \
@@ -52,9 +58,9 @@ struct colorAlpha
     OUT_FLOAT(resultB, 0.0),                            \
     OUT_FLOAT(resultA, 0.0)
 
-void Color_Set_Outputs(colorAlpha resultRGBA, output color resultRGB,
-                       output float resultR, output float resultG,
-                       output float resultB, output float resultA)
+void Color_Alpha_Set_Outputs(colorAlpha resultRGBA, output color resultRGB,
+                                output float resultR, output float resultG,
+                                output float resultB, output float resultA)
 {
     resultRGB = resultRGBA.RGB;
     resultR = resultRGBA.RGB[0];
@@ -63,9 +69,21 @@ void Color_Set_Outputs(colorAlpha resultRGBA, output color resultRGB,
     resultA = resultRGBA.A;
 }
 
-#define COLOR_OUTPUTS_SET                    \
-    Color_Set_Outputs(resultRGBA, resultRGB, \
+#define COLOR_ALPHA_OUTPUTS_SET              \
+    Color_Alpha_Set_Outputs(resultRGBA, resultRGB, \
                       resultR, resultG,      \
                       resultB, resultA)
+
+void Color_Set_Outputs(output color resultRGB, output float resultR,
+                        output float resultG, output float resultB)
+{
+    resultR = resultRGB[0];
+    resultG = resultRGB[1];
+    resultB = resultRGB[2];
+}
+
+#define COLOR_OUTPUTS_SET                 \
+    Color_Set_Outputs(resultRGB, resultR, \
+                      resultG, resultB)
 
 #endif // COLOR_H
