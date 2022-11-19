@@ -21,15 +21,26 @@ shader apTexture_1
         string widget = "null"
     ]],
 
-    COLOR_OUTPUTS
+    COLOR_ALPHA_OUTPUTS
 )
 {
     string wrapMode = "default";
     if (tileTex)
         wrapMode = "periodic";
 
-    float inputS = s;
-    float inputT = t;
+    float inputS;
+    float inputT;
+    if (isconnected(inputManifold))
+    {
+        inputS = inputManifold.Q[0];
+        inputT = inputManifold.Q[1];
+    }
+    else
+    {
+        inputS = s;
+        inputT = t;
+    }
+
     if (invertT)
         inputT = 1 - inputT;
     inputS *= scaleS * scaleGlobal;
@@ -53,5 +64,5 @@ shader apTexture_1
                                 inputMin, inputMax,
                                 outputMin, outputMax);
 
-    COLOR_OUTPUTS_SET;
+    COLOR_ALPHA_OUTPUTS_SET;
 }
