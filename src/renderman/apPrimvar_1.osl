@@ -1,0 +1,95 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Color.h"
+
+shader apPrimvar_1
+[[ string help = "Read geometry primvar" ]]
+(
+    string primvarName = ""
+    [[
+        int connectable = 0,
+        string help = "Name your desired primvar",
+        string label = "Primvar Name"
+    ]],
+    string primvarType = "float"
+    [[
+        int connectable = 0,
+        string label  = "Primvar Type",
+        string widget = "popup",
+        string options = "float|float2|color|point|vector|normal"
+    ]],
+
+    color defaultVal = color(0.0)
+    [[
+        string help = "This value will be used if primvar is not found",
+        string label = "Default Value"
+    ]],
+    int invertResult = 0
+    [[
+        int connectable = 0,
+        string label = "Invert Result",
+        string widget = "checkBox"
+    ]],
+
+    COLOR_OUTPUTS
+)
+{
+    int primvarFound = 0;
+    color primvar = defaultVal;
+
+    if (primvarType == "float") // read float primvar
+    {
+        float f1 = defaultVal[0];
+        primvarFound = getattribute("primvar", primvarName, f1);
+        if (primvarFound)
+            primvar = color(f1);
+    }
+    else if (primvarType == "float2") // read float2 primvar
+    {
+        float f2[2];
+        f2[0] = defaultVal[0];
+        f2[1] = defaultVal[1];
+        primvarFound = getattribute("primvar", primvarName, f2);
+        if (primvarFound)
+        {
+            primvar[0] = f2[0];
+            primvar[1] = f2[1];
+            primvar[2] = 0.0;
+        }
+    }
+    else if (primvarType == "color") // read color primvar
+        primvarFound = getattribute("primvar", primvarName, primvar);
+    else if (primvarType == "point") // read point primvar
+    {
+        point p;
+        primvarFound = getattribute("primvar", primvarName, p);
+        if (primvarFound)
+        {
+            primvar = p;
+        }
+    }
+    else if (primvarType == "vector") // read vector primvar
+    {
+        vector v;
+        primvarFound = getattribute("primvar", primvarName, v);
+        if (primvarFound)
+        {
+            primvar = v;
+        }
+    }
+    else if (primvarType == "normal") // read normal primvar
+    {
+        normal n;
+        primvarFound = getattribute("primvar", primvarName, n);
+        if (primvarFound)
+        {
+            primvar = n;
+        }
+    }
+
+    // Post processing
+    if (invertResult)
+        primvar = color(1.0) - primvar;
+
+    resultRGB = color(primvar);
+    COLOR_OUTPUTS_SET;
+}
