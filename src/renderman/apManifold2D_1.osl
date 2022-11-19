@@ -1,0 +1,62 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Manifold.h"
+
+shader apManifold2D_1
+[[ string help = "Read texture map" ]]
+(
+    string uvSetName = ""
+    [[
+        int connectable = 0,
+        string label = "UV Set"
+    ]],
+    float s = 0
+    [[
+        int connectable = 0,
+        int lockgeom = 0,
+        string widget = "null"
+    ]],
+    float t = 0
+    [[
+        int connectable = 0,
+        int lockgeom = 0,
+        string widget = "null"
+    ]],
+
+    MANIFOLD_XFORM_PARAMS,
+
+    output Manifold resultManifold = MANIFOLD_ZERO,
+    output float resultS = 0.0,
+    output float resultT = 0.0,
+    output float resultRadius = 0.0
+)
+{
+    float inputUvSet[2];
+    int uvSetFound = 0;
+
+    if (uvSetName == "" || uvSetName == "uv")
+    {
+        inputUvSet[0] = s;
+        inputUvSet[1] = t;
+        uvSetFound = 1;
+    }
+    else
+    {
+        inputUvSet[0] = 0.0;
+        inputUvSet[1] = 0.0;
+        uvSetFound = getattribute("primvar", uvSetName, inputUvSet);
+    }
+
+    if (uvSetFound)
+        resultManifold.Q = point(inputUvSet[0], inputUvSet[1], 0.0);
+    else
+        resultManifold.Q = point(0.0);
+
+    resultManifold.Qradius = 0.0;
+    resultManifold.QN = vector(0.0, 0.0, 1.0);
+
+    MANIFOLD_TRANSFORM;
+
+    resultS = resultManifold.Q[0];
+    resultT = resultManifold.Q[1];
+    resultRadius = resultManifold.Qradius;
+}
