@@ -68,7 +68,7 @@ void Color_Set_Outputs(colorAlpha resultRGBA, output color resultRGB,
     resultA = resultRGBA.A;
 }
 
-#define COLOR_OUTPUTS_SET                    \
+#define COLOR_ALPHA_OUTPUTS_SET              \
     Color_Set_Outputs(resultRGBA, resultRGB, \
                       resultR, resultG,      \
                       resultB, resultA)
