@@ -1,0 +1,17 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Float.h"
+
+shader apFloatClamp_1
+[[ string help = "Clamp float value" ]]
+(
+    FLOAT_INPUTS,
+    FLOAT_TAG_INPUTS(min),
+    FLOAT_TAG_INPUTS(max),
+
+    FLOAT_OUTPUTS
+)
+{
+    resultF = clamp(inputF, inputF_min, inputF_max); 
+
+    FLOAT_OUTPUTS_SET;
+}
