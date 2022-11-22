@@ -11,15 +11,23 @@ shader apFloatLayer_1
         string label = "Number of Layers",
         int slider = 1, int slidermin = 0, int slidermax = 5
     ]],
-
-    float baseF = 1.0
-    [[ string label = "Base Value" ]],
     int clampResult = 0
     [[
         int connectable = 0,
         string help = "Clamp minimum to 0.0",
         string label = "Clamp Result",
         string widget = "checkBox"
+    ]],
+
+    float baseVal = 1.0
+    [[
+        string label = "Base Value",
+        string page = "Base"
+    ]],
+    float baseWt = 1.0
+    [[
+        string label = "Base Weight",
+        string page = "Base"
     ]],
 
     FLOAT_LAYER(1),
@@ -31,7 +39,7 @@ shader apFloatLayer_1
     FLOAT_OUTPUTS
 )
 {
-    resultF = baseF;
+    resultF = baseVal * baseWt;
     FLOAT_LAYER_OPERATION(1, resultF);
     FLOAT_LAYER_OPERATION(2, resultF);
     FLOAT_LAYER_OPERATION(3, resultF);
