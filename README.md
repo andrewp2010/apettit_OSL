@@ -9,7 +9,7 @@ See [OSL Documentation](osl-languagespec.pdf) for more information on OSL syntax
 apettit_OSL is currently supported on Windows platforms, and has been built and tested on Windows 10.
 
 The OSL code is not dependent on platform, but rather the renderer. It has been build and tested on Renderman 24.4. Given the nature of OSL it should be supported in other renderers but support should be considered experimental at this time. 
-OSL shaders are relatively dependent upon the OSL shader. See [Library Structure](#library-structure) for more in depth explanation.
+OSL shaders are relatively dependent upon the OSL shader (See [Library Structure](#library-structure) for a more in depth explanation).
 
 
 I am actively working on porting apettit_OSL scripts to Linux. apettit_OSL script support should be considered experimental for Linux at this time.
@@ -78,8 +78,7 @@ Note: see [Library Structure](#library-structure) for RMAN_SHADERPATH logic
 ## Additional Information
 
 ### Library Structure
-This OSL library supports shaders that are renderer specific and generally supported (whether they are supported generally or not is dependent on whether the shdaer contains any metadata specific to any given renderer).
-Where shaders are placed in the ```src``` is important for this reason. Renderer specific shaders should be placed within a folder that is specific to the renderer, e.g. ```src\renderman``` (the user can add any number of folders they desire). General shaders can be placed in ```src\general```. At compile time the ```osl2hda.py``` will create different library files dependent upon folders within ```src```. Therefore, renderers will generally need an environment variable that points to both the general and their renderer specific bin folder. This is why ```RMAN_SHADERPATH``` requires two paths in the [setup above](#houdinienv).
+This OSL library supports shaders that are renderer specific and generally supported (whether they are supported generally or not is dependent on whether the shader contains metadata specific to any given renderer). Where shaders are placed in the ```src``` is important for this reason. Renderer specific shaders should be placed within a folder that is specific to the renderer, e.g. ```src\renderman``` (the user can add any number of folders they desire). General shaders can be placed in ```src\general```. At compile time the ```osl2hda.py``` will create different library files dependent upon folders within ```src```. Therefore, renderers will generally need an environment variable that points to both the general and their renderer specific bin folder. This is why ```RMAN_SHADERPATH``` requires two paths in the [setup above](#houdinienv).
 
 ### Namespace and Versioning
 All general versioning and namespace practices apply to this library.
