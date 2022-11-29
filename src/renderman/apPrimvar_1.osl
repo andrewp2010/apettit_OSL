@@ -4,31 +4,12 @@
 shader apPrimvar_1
 [[ string help = "Read geometry primvar" ]]
 (
-    string primvarName = ""
-    [[
-        int connectable = 0,
-        string help = "Name your desired primvar",
-        string label = "Primvar Name"
-    ]],
-    string primvarType = "float"
-    [[
-        int connectable = 0,
-        string label  = "Primvar Type",
-        string widget = "popup",
-        string options = "float|float2|color|point|vector|normal"
-    ]],
+    STRING("", "Primvar Name", primvarName, "", string help = "Name your desired primvar"),
+    POPUP("", "Primvar Type", primvarType, "float", "float|float2|color|point|vector|normal"),
 
-    color defaultVal = color(0.0)
-    [[
-        string help = "This value will be used if primvar is not found",
-        string label = "Default Value"
-    ]],
-    int invertResult = 0
-    [[
-        int connectable = 0,
-        string label = "Invert Result",
-        string widget = "checkBox"
-    ]],
+    COLOR("", "Default Value", defaultVal, COLOR_ZERO,
+          string help = "This value will be used if primvar is not found"),
+    CHECKBOX("", "Invert Result", invertResult, 0),
 
     COLOR_OUTPUTS
 )

@@ -5,24 +5,14 @@
 shader apLobeSpecular_1
 [[ string help = "apettit's prefered inputs for pxrSurface's specular lobe" ]]
 (
-    float inputKFace = 1.0
-    [[ string label = "KFace" ]],
-    float inputKEdge = 1.0
-    [[ string label = "KEdge" ]],
-    float roughness = 0.2
-    [[ string label = "Roughness"]],
-    color inputTint = color(1.0)
-    [[ string label = "Tint" ]],
+    FLOAT("", "KFace", inputKFace, 1.0),
+    FLOAT("", "KEdge", inputKEdge, 1.0),
+    FLOAT("", "Roughness", roughness, 0.2),
+    COLOR("", "Tint", inputTint, COLOR_ONE),
 
     VARIATION_INPUTS(Specular),
-    int kEdgeVar = 0
-    [[
-        int connectable = 0,
-        string help = "Have variation affect the edge value as well",
-        string label = "Affect Edge",
-        string page = "Specular Variation",
-        string widget = "checkBox"
-    ]],
+    CHECKBOX("Specular Variation", "Affect Edge", kEdgeVar, 0,
+             string help = "Have variation affect the edge value as well"),
     VARIATION_INPUTS(Roughness),
 
     output color resultKFace = color(0.0),

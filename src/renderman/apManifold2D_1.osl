@@ -4,30 +4,15 @@
 shader apManifold2D_1
 [[ string help = "Read texture map" ]]
 (
-    string uvSetName = ""
-    [[
-        int connectable = 0,
-        string label = "UV Set"
-    ]],
-    float s = 0
-    [[
-        int connectable = 0,
-        int lockgeom = 0,
-        string widget = "null"
-    ]],
-    float t = 0
-    [[
-        int connectable = 0,
-        int lockgeom = 0,
-        string widget = "null"
-    ]],
+    STRING("", "UV Set", uvSetName, ""),
+    FLOAT("", "", s, 0.0, 
+          int connectable = 0, int lockgeom = 0, string widget = "null"),
+    FLOAT("", "", t, 0.0, 
+          int connectable = 0, int lockgeom = 0, string widget = "null"),
 
     MANIFOLD_XFORM_PARAMS,
 
-    output Manifold resultManifold = MANIFOLD_ZERO,
-    output float resultS = 0.0,
-    output float resultT = 0.0,
-    output float resultRadius = 0.0
+    MANIFOLD_2D_OUTPUTS
 )
 {
     float inputUvSet[2];
@@ -56,7 +41,5 @@ shader apManifold2D_1
 
     MANIFOLD_TRANSFORM;
 
-    resultS = resultManifold.Q[0];
-    resultT = resultManifold.Q[1];
-    resultRadius = resultManifold.Qradius;
+    MANIFOLD_2D_OUTPUTS_SET;
 }
