@@ -16,7 +16,7 @@ shader apManifoldConstruct_1
 
     MANIFOLD_XFORM_PARAMS, 
     
-    MANIFOLD_OUTPUTS
+    MANIFOLD_3D_OUTPUTS
 )
 {
     point refP = inputP;
@@ -27,5 +27,5 @@ shader apManifoldConstruct_1
 
     MANIFOLD_TRANSFORM;
 
-    MANIFOLD_OUTPUTS_SET;
+    MANIFOLD_3D_OUTPUTS_SET;
 } 
