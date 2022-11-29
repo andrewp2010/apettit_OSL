@@ -1,0 +1,121 @@
+#include "../lib/ShaderAPI.h"
+#include "../lib/Color.h"
+#include "../lib/Math.h"
+
+shader apColorManipulate_1
+[[ string help = "Manipulate color value" ]]
+(
+    COLOR_ALPHA_INPUTS,
+
+    CHECKBOX("", "Use Adjustment", useAdjust, 0,
+             string help = "Uses add-add-add-mult operations"),
+    CHECKBOX("", "Use Variation", useVariation, 0,
+             string help = "Uses add-add-add-mult operations"),
+    CHECKBOX("", "Use Tint", useTint, 0),
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Adjustment
+    ////////////////////////////////////////////////////////////////////////////
+    FLOAT("Adjustment", "Adjust Hue", adjustHue, 0.0, int connectable = 0,
+          string help = "Hue adjustment amount. Hue is a loop and at -0.5 or "
+                        "0.5 you're at the compliment color. Any further and "
+                        "you start coming back to your original color."),
+    FLOAT("Adjustment", "Adjust Saturation", adjustSat, 0.0, int connectable = 0),
+    FLOAT("Adjustment", "Adjust Value", adjustVal, 0.0, int connectable = 0),
+    FLOAT("Adjustment", "Adjust Opacity", adjustOpac, 1.0, int connectable = 0),
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Variation
+    ////////////////////////////////////////////////////////////////////////////
+    FLOAT("Variation", "Hue Pattern", varyHuePattern, 0.5),
+    FLOAT("Variation", "Hue Amount", varyHueAmount, 0.0),
+    FLOAT("Variation", "Saturation Pattern", varySatPattern, 0.5),
+    FLOAT("Variation", "Saturation Amount", varySatAmount, 0.0),
+    FLOAT("Variation", "Value Pattern", varyValPattern, 0.5),
+    FLOAT("Variation", "Value Amount", varyValAmount, 0.0),
+    FLOAT("Variation", "Opacity Pattern", varyOpacPattern, 0.5),
+    FLOAT("Variation", "Opacity Amount", varyOpacAmount, 0.0),
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Tint
+    ////////////////////////////////////////////////////////////////////////////
+    COLOR("Tint", "Tint Color", tintColor, COLOR_ONE),
+    FLOAT("Tint", "Tint Amount", tintAmount, 1.0),
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Post Process
+    ////////////////////////////////////////////////////////////////////////////
+    CHECKBOX("Post Process", "Use Clamp", useClamp, 1),
+    CHECKBOX("Post Process", "HDR Value", hdrVal, 0,
+             string help = "Avoid clamping large value values (negative values "
+                           "will still be clamped at 0.0)"),
+
+    COLOR_ALPHA_OUTPUTS
+)
+{
+    COLOR_ALPHA_INPUTS_GET;
+    resultRGBA = inputRGBA;
+    Unpremultiply(resultRGBA);
+    
+    if (useAdjust || useVariation)
+    {
+        resultRGBA.RGB = RGBtoHSV(inputRGBA.RGB);        
+        float resultHue = resultRGBA.RGB[0];
+        float resultSat = resultRGBA.RGB[1];
+        float resultVal = resultRGBA.RGB[2];
+        float resultOpac = resultRGBA.A;
+        
+        if (useAdjust)
+        {
+            if (adjustHue != 0.0)
+                resultHue = Remainder(resultHue + adjustHue);
+            if (adjustSat != 0.0)
+                resultSat = clamp(resultSat + adjustSat, 0.0, 1.0);
+            if (adjustVal != 0.0)
+                if (hdrVal)
+                    resultVal = max(resultVal + adjustVal, 0.0);
+                else
+                    resultVal = clamp(resultVal + adjustVal, 0.0, 1.0);
+            if (adjustOpac != 0.0)
+                resultOpac = clamp(resultOpac * adjustOpac, 0.0, 1.0);
+        }
+        
+        if (useVariation)
+        {
+            float tmpVaryHue = (varyHuePattern - 0.5) * varyHueAmount;
+            resultHue += tmpVaryHue;
+
+            float tmpVarySat = (varySatPattern - 0.5) * varySatAmount;
+            resultSat += tmpVarySat;
+
+            float tmpVaryVal = (varyValPattern - 0.5) * varyValAmount;
+            resultVal += tmpVaryVal;
+
+            resultHue = Remainder(resultHue);
+            resultSat = clamp(resultSat, 0.0, 1.0);
+            if (hdrVal)
+                resultVal = max(resultVal, 0.0);
+            else
+                resultVal = clamp(resultVal, 0.0, 1.0);
+
+            float tmpOpac = resultOpac;
+            resultOpac = clamp(resultOpac * varyOpacPattern, 0.0, 1.0);
+            resultOpac = mix(tmpOpac, resultOpac, varyOpacAmount);
+        }
+
+        resultRGBA.RGB = HSVtoRGB(color(resultHue, resultSat, resultVal));
+        resultRGBA.A = resultOpac;
+    }
+
+    if (useTint)
+    {
+        color resultTint = resultRGBA.RGB * tintColor;
+        resultRGBA.RGB = mix(resultRGBA.RGB, resultTint, tintAmount);
+    }
+
+    if (useClamp)
+        ColorAlphaClamp(resultRGBA);
+
+    Premultiply(resultRGBA);
+    COLOR_ALPHA_OUTPUTS_SET;
+} 
