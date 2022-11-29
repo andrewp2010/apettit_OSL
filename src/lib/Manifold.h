@@ -1,8 +1,16 @@
-#include "Params.h"
+#include "Float.h"
 #include "Math.h"
+#include "Normal.h"
+#include "Params.h"
+#include "Point.h"
+#include "Vector.h"
 
 #ifndef MANIFOLD_H
 #define MANIFOLD_H
+
+////////////////////////////////////////////////////////////////////////////////
+// Structs
+////////////////////////////////////////////////////////////////////////////////
 
 struct Manifold {
     point Q;
@@ -10,35 +18,72 @@ struct Manifold {
     float Qradius;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+// Macro Default Macros
+////////////////////////////////////////////////////////////////////////////////
+
 #define MANIFOLD_ZERO { point(0.0), normal(0.0, 0.0, 1.0), 0.0 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Input Macros
+////////////////////////////////////////////////////////////////////////////////
+
 #define MANIFOLD_INPUT \
-    PARAM("", Manifold, inputManifold, MANIFOLD_ZERO, string widget = "null")
+    PARAM("", "", Manifold, inputManifold, MANIFOLD_ZERO, string widget = "null")
 
 #define MANIFOLD_XFORM_PARAMS                                                   \
-    POINT("Transform", origin, point(0.0),                                      \
+    POINT("Transform", "Origin", origin, POINT_ZERO,                            \
         string help = "Origin around which the scaling and rotation happens."), \
-    FLOAT("Transform", frequency, 1.0,                                          \
+    FLOAT("Transform", "Frequency", frequency, 0.0,                             \
         string help = "Frequency is the uniform scale of the transformation."), \
-    VECTOR("Transform", scale, vector(1.0),                                     \
+    VECTOR("Transform", "Scale", scale, VECTOR_ONE,                             \
         string help = "Non-uniform scale."),                                    \
-    FLOAT("Transform", offset, 0.0,                                             \
+    FLOAT("Transform", "Offset", offset, 0.0,                                   \
         string help = "Amount to offset along the offsetVector."),              \
-    VECTOR("Transform", offsetVector, vector(0.0),                              \
+    VECTOR("Transform", "Offset Vector", offsetVector, VECTOR_ZERO,             \
         string help = "Defines the direction along which to transform."),       \
-    POINT("Transform", rotation, point(0.0),                                    \
+    POINT("Transform", "Rotation", rotation, POINT_ZERO,                        \
         string help = "Rotation in degrees for each axis.")
 
-#define MANIFOLD_OUTPUTS                                \
+////////////////////////////////////////////////////////////////////////////////
+// Output Macros
+////////////////////////////////////////////////////////////////////////////////
+
+#define MANIFOLD_3D_OUTPUTS                             \
     OUT_PARAM(Manifold, resultManifold, MANIFOLD_ZERO), \
-    OUT_POINT(resultPoint, point(0, 0, 0)),             \
-    OUT_FLOAT(resultS, 0),                              \
-    OUT_FLOAT(resultT, 0),                              \
-    OUT_FLOAT(resultRadius, 0),                         \
-    OUT_NORMAL(resultN, normal (0, 0, 0)),              \
-    OUT_FLOAT(resultX, 0),                              \
-    OUT_FLOAT(resultY, 0),                              \
-    OUT_FLOAT(resultZ, 0)
+    OUT_POINT(resultPoint, POINT_ZERO),                 \
+    OUT_FLOAT(resultS, 0.0),                            \
+    OUT_FLOAT(resultT, 0.0),                            \
+    OUT_FLOAT(resultRadius, 0.0),                       \
+    OUT_NORMAL(resultN, NORMAL_ZERO),                   \
+    OUT_FLOAT(resultX, 0.0),                            \
+    OUT_FLOAT(resultY, 0.0),                            \
+    OUT_FLOAT(resultZ, 0.0)
+
+#define MANIFOLD_3D_OUTPUTS_SET            \
+    resultS = resultManifold.Q[0];         \
+    resultT = resultManifold.Q[1];         \
+    resultPoint = resultManifold.Q;        \
+    resultN = resultManifold.QN;           \
+    resultRadius = resultManifold.Qradius; \
+    resultX = resultManifold.Q[0];         \
+    resultY = resultManifold.Q[1];         \
+    resultZ = resultManifold.Q[2]
+
+#define MANIFOLD_2D_OUTPUTS                             \
+    OUT_PARAM(Manifold, resultManifold, MANIFOLD_ZERO), \
+    OUT_FLOAT(resultS, 0.0),                            \
+    OUT_FLOAT(resultT, 0.0),                            \
+    OUT_FLOAT(resultRadius, 0.0)
+
+#define MANIFOLD_2D_OUTPUTS_SET           \
+    resultS = resultManifold.Q[0];        \
+    resultT = resultManifold.Q[1];        \
+    resultRadius = resultManifold.Qradius
+
+////////////////////////////////////////////////////////////////////////////////
+// Functions
+////////////////////////////////////////////////////////////////////////////////
 
 void ManifoldConstruct(point P, normal N, output Manifold M)
 {
@@ -47,37 +92,8 @@ void ManifoldConstruct(point P, normal N, output Manifold M)
     M.Qradius = 0.0;
 }
 
-void ManifoldSetOutputs(Manifold resultManifold,
-                          output float resultS,
-                          output float resultT,
-                          output point resultPoint,
-                          output normal resultNormal,
-                          output float resultRadius,
-                          output float resultX,
-                          output float resultY,
-                          output float resultZ)
-{
-    resultS = resultManifold.Q[0];
-    resultT = resultManifold.Q[1];
-    resultPoint = resultManifold.Q;
-    resultNormal = resultManifold.QN;
-    resultRadius = resultManifold.Qradius;
-    resultX = resultManifold.Q[0];
-    resultY = resultManifold.Q[1];
-    resultZ = resultManifold.Q[2];
-}
-
-#define MANIFOLD_OUTPUTS_SET             \
-    ManifoldSetOutputs(resultManifold,   \
-                         resultS,        \
-                         resultT,        \
-                         resultPoint,    \
-                         resultN,        \
-                         resultRadius,   \
-                         resultX,        \
-                         resultY,        \
-                         resultZ)
-
+// ManifoldTransform functions uses MANIFOLD_TRANSFORM macro to serve as a wrapper to call the
+// function. It is easier to read then to make this more complicated function a macro
 void ManifoldTransform(output Manifold manifold,
                         point origin,
                         float frequency,
@@ -119,6 +135,7 @@ void ManifoldTransform(output Manifold manifold,
                                     abs(scaleFactor[2])));
 }
 
+// wrapper macro for ManifoldTransform function
 #define MANIFOLD_TRANSFORM            \
     ManifoldTransform(resultManifold, \
                     origin,           \

@@ -1,9 +1,28 @@
 #ifndef MATH_H
 #define MATH_H
 
+////////////////////////////////////////////////////////////////////////////////
+// Functions
+////////////////////////////////////////////////////////////////////////////////
+
+float Overlay(float a, float b)
+{
+    return mix((2.0 * a * b), (1.0 - (2.0 * (1.0 - a) * (1.0 - b))), step(0.5, b));
+}
+
+float Remainder(float f)
+{
+    return f - floor(f);
+}
+
 float SafeDivide(float num, float den)
 {
     return (den == 0.0) ? 0.0 : (num / den);
+}
+
+float Screen(float a, float b)
+{
+    return 1.0 - ((1.0 - a) * (1.0 - b));
 }
 
 color RemapColor(color inputRGB,
