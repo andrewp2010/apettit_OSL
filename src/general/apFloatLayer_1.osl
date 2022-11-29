@@ -4,31 +4,14 @@
 shader apFloatLayer_1
 [[ string help = "Divide float A and float B. If Input B is 0.0 then returns 0.0" ]]
 (
-    int numLyr = 1
-    [[
-        int connectable = 0,
-        string help = "Number of layers to compute",
-        string label = "Number of Layers",
-        int slider = 1, int slidermin = 0, int slidermax = 5
-    ]],
-    int clampResult = 0
-    [[
-        int connectable = 0,
-        string help = "Clamp minimum to 0.0",
-        string label = "Clamp Result",
-        string widget = "checkBox"
-    ]],
+    INT("", "Number of Layers", numLyr, 1,
+        int connectable = 0, string help = "Number of layers to compute",
+        int slidermin = 0, int slidermax = 5),
+    CHECKBOX("", "Clamp Result", clampResult, 1,
+             int connectable = 0, string help = "Clamp minimum to 0.0"),
 
-    float baseVal = 1.0
-    [[
-        string label = "Base Value",
-        string page = "Base"
-    ]],
-    float baseWt = 1.0
-    [[
-        string label = "Base Weight",
-        string page = "Base"
-    ]],
+    FLOAT("Base", "Base Value", baseVal, 1.0),
+    FLOAT("Base", "Base Weight", baseWt, 1.0),
 
     FLOAT_LAYER(1),
     FLOAT_LAYER(2),

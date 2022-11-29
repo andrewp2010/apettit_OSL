@@ -6,13 +6,8 @@ shader apFloatSubtract_1
 (
     FLOAT_TAG_INPUTS(A),
     FLOAT_TAG_INPUTS(B),
-    int clampResult = 0
-    [[
-        int connectable = 0,
-        string help = "Clamp minimum to 0.0",
-        string label = "Clamp Result",
-        string widget = "checkBox"
-    ]],
+    CHECKBOX("", "Clamp Result", clampResult, 1,
+             string help = "Clamp minimum to 0.0"),
 
     FLOAT_OUTPUTS
 )

@@ -5,7 +5,7 @@ shader apColorConstruct_1
 [[ string help = "Create color from split inputs" ]]
 (
     COLOR_SPLIT_INPUTS,
-
+    
     COLOR_ALPHA_OUTPUTS
 )
 {
@@ -18,6 +18,12 @@ shader apColorConstruct_1
         resultRGBA.RGB[2] = inputB;
     }
     resultRGBA.A = inputA;
+
+    if (premultiplyOutput)
+    {
+        resultRGBA.isPremultiplied = 0;
+        Premultiply(resultRGBA);
+    }
 
     COLOR_ALPHA_OUTPUTS_SET;
 } 

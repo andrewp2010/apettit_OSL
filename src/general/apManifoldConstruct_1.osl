@@ -1,26 +1,18 @@
 #include "../lib/ShaderAPI.h"
 #include "../lib/Manifold.h"
+#include "../lib/Normal.h"
+#include "../lib/Point.h"
 
 shader apManifoldConstruct_1
 [[ string help = "Create color from split inputs" ]]
 (
-    point inputP = point(0, 0, 0)
-    [[ string label = "Point" ]],
-    normal inputN = normal(0, 0, 0)
-    [[ string label = "Normal" ]],
+    POINT("", "Point", inputP, POINT_ZERO),
+    NORMAL("", "Normal", inputN, NORMAL_ZERO),
 
-    int useSplitInputs = 0
-    [[
-        int connectbale = 0,
-        string label = "Use Split Inputs",
-        string widget = "checkBox"
-    ]],
-    float inputP_X = 0
-    [[ string label = "Point X" ]],
-    float inputP_Y = 0
-    [[ string label = "Point Y" ]],
-    float inputP_Z = 0
-    [[ string label = "Point Z" ]],
+    CHECKBOX("", "Use Split Inputs", useSplitInputs, 0),
+    FLOAT("", "Point X", input_X, 0),
+    FLOAT("", "Point Y", input_Y, 0),
+    FLOAT("", "Point Z", input_Z, 0),
 
     MANIFOLD_XFORM_PARAMS, 
     
@@ -29,7 +21,7 @@ shader apManifoldConstruct_1
 {
     point refP = inputP;
     if (useSplitInputs)
-        refP = point(inputP_X, inputP_Y, inputP_Z);
+        refP = point(input_X, input_Y, input_Z);
 
     ManifoldConstruct(refP, inputN, resultManifold);
 

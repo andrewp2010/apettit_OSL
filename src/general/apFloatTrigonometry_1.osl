@@ -5,23 +5,10 @@
 shader apFloatTrigonometry_1
 [[ string help = "Apply trigonometric function to a float value." ]]
 (
-    float inputAngle = 0.0
-    [[ string label = "Angle"]],
-    string angleUnit = "radians"
-    [[ 
-        int connectable = 0, 
-        string label = "Angle Unit", 
-        string widget = "popup",
-        string options = "radians|degrees"
-    ]],
+    FLOAT("", "Angle", inputAngle, 0.0),
+    POPUP("", "Angle Unit", angleUnit, "radians", "radians|degrees"),
 
-    string trigFunc = "sin"
-    [[
-        int connectable = 0,
-        string label = "Function",
-        string widget = "popup",
-        string options = "sin|cos|tan"
-    ]],
+    POPUP("", "Function", trigFunc, "sin", "sin|cos|tan"),
 
     FLOAT_OUTPUTS
 )

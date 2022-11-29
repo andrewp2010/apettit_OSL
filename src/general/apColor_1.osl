@@ -4,11 +4,7 @@
 shader apColor_1
 [[ string help = "Simple color pass-through operation" ]]
 (
-    color inputRGB = COLOR_DB
-    [[
-        int connectable = 0,
-        string label = "RGB"
-    ]],
+    COLOR("", "Color", inputRGB, COLOR_DEF, int connectable = 0),
     
     COLOR_OUTPUTS
 )

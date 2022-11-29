@@ -7,14 +7,10 @@ shader apFloatRemap_1
 (
     FLOAT_INPUTS,
 
-    float inputMin = 0.0
-    [[ string label = "Input Min" ]],
-    float inputMax = 1.0
-    [[ string label = "Input Max" ]],
-    float outputMin = 0.0
-    [[ string label = "Output Min" ]],
-    float outputMax = 1.0
-    [[ string label = "Output Max" ]],
+    FLOAT("", "Input Min", inputMin, 0.0),
+    FLOAT("", "Input Max", inputMax, 1.0),
+    FLOAT("", "Output Min", outputMin, 0.0),
+    FLOAT("", "Output Max", outputMax, 1.0),
 
     FLOAT_OUTPUTS
 )
